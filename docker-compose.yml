@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/:/backend/
+      - ./sqlite.db:/sqlite.db
+    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8088
+    ports:
+      - 8088:8088
